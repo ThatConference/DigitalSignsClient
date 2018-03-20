@@ -8,8 +8,10 @@ const Header = props => {
   return (
     <Fragment>
       <section className="upNext">
-        <span>UP NEXT:</span>
-        <span>Mat Bolwerk - Driving Dogs Crazy</span>
+        <div>
+          <span>UP NEXT: </span>
+          <span>Mat Bolwerk - Driving Dogs Crazy</span>
+        </div>
         <span>
           {DateTime.local().toFormat("hh:mm")} | Next Session at 11:00
         </span>
