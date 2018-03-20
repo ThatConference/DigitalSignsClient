@@ -10,11 +10,11 @@ class Room extends Component {
   render() {
     return (
       <Fragment>
-        <section className="room">
+        <main className="room">
           <Header />
           <Session />
           <Footer />
-        </section>
+        </main>
       </Fragment>
     );
   }

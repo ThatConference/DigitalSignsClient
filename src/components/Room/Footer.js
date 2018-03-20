@@ -4,10 +4,12 @@ import "./Footer.css";
 const Footer = props => {
   return (
     <Fragment>
-      <div> this is the Footer !!</div>
-      <div className="logo">
-        <img src="" alt="" />
-      </div>
+      <footer>
+        <div className="link"> this is the Footer !!</div>
+        <div className="logo">
+            <img src="" alt="" />
+        </div>
+      </footer>
     </Fragment>
   );
 };

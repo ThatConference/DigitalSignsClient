@@ -11,9 +11,9 @@ const Session = props => {
           <img src={logo} alt="" />
         </div>
         <div className="details">
-          <span className="speakerNam,e">CLARK SELL</span>
-          <span className="speakerCompany">Unspecified</span>
-          <span className="sessionTitle">How to be Awesome!!</span>
+          <div className="speakerName">CLARK SELL</div>
+          <div className="speakerCompany">Unspecified</div>
+          <div className="sessionTitle">How to be Awesome!!</div>
         </div>
       </section>
     </Fragment>

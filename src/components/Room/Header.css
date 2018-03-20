@@ -1,5 +1,18 @@
-.upNext {
+/* =============== Header =============== */
+header {
+  padding: 1.5rem;
+  grid-area: header;
   display: grid;
-  grid-gap: 25px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
+  align-content: space-between;
+}
+/* ********** Up Next ********** */
+
+/* ********** Current Time & Warnings ********** */
+.timeWarnings {
+  text-align: right;
+}
+.currentTime {
+  font-size: 1.75em;
+  font-weight: bold;
 }

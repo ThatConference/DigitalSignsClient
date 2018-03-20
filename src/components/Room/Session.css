@@ -1,11 +1,27 @@
+/* =============== Session =============== */
 .session {
+  padding: 1rem;
+  grid-area: content;
   display: grid;
-  grid-gap: 15px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
 }
 
-.details {
-  display: grid;
-  grid-gap: 5px;
-  grid-template-rows: 0.25fr 0.25fr 1fr;
+/* ********** Session Image ********** */
+.headShot {
+  padding: 0 2rem 2rem;
+  text-align: center;
+}
+.headShot img {
+  width: 400px;
+  height: 400px;
+  max-width: 100%;
+  background: #3f51b5;
+  border-radius: 100%;
+}
+
+/* ********** Session Details ********** */
+.speakerName {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
 }
