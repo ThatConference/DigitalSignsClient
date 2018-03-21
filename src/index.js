@@ -4,6 +4,7 @@ import { render } from "react-dom";
 import Router from "./components/Router";
 import App from "./components/App";
 
+import "./normalize.css";
 import "./index.css";
 import registerServiceWorker from "./registerServiceWorker";
 

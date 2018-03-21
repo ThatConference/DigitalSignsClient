@@ -1,0 +1,22 @@
+/* =============== Footer Styles =============== */
+.footer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 1fr));
+}
+
+.footer__qrcode-container {
+  padding: 1rem;
+}
+
+.footer__logo-container {
+  padding: 1rem;
+  text-align: right;
+}
+
+.footer__qrcode,
+.footer__logo {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}

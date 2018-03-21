@@ -6,16 +6,16 @@ import "./Session.css";
 const Session = props => {
   return (
     <Fragment>
-      <section className="session">
-        <div className="headShot">
-          <img src={logo} alt="" />
+      <div className="session">
+        <div className="session__img-wrapper">
+          <img className="session__img" src={logo} alt="" />
         </div>
-        <div className="details">
-          <div className="speakerName">CLARK SELL</div>
-          <div className="speakerCompany">Unspecified</div>
-          <div className="sessionTitle">How to be Awesome!!</div>
+        <div className="session__details">
+          <h1 className="session__title">How to be Awesome!! </h1>
+          <h2 className="session__speaker">CLARK SELL</h2>
+          <p className="session__speaker-company">Unspecified</p>
         </div>
-      </section>
+      </div>
     </Fragment>
   );
 };
