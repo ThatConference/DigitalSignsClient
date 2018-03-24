@@ -1,5 +1,5 @@
-![Build Status](https://travis-ci.org/ThatConference/thatserver.svg?branch=master)
+![Build Status - Master](https://travis-ci.org/ThatConference/DigitalSignsClient.svg?branch=master)
 
 # Digital Signs
 
-[Create React App Docs](/createReactApp)
+[Create React App Docs](docs/createReactApp.md)
