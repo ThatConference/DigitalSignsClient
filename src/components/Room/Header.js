@@ -8,7 +8,10 @@ const Header = props => {
     <Fragment>
       <div className="header">
         <div className="header__upNext">
-          <span><b>UP NEXT:</b> 11:00am - Mat Bolwerk - <i>Driving Dogs Crazy</i></span>
+          <span>
+            <b>UP NEXT:</b> 11:00am - Mat Bolwerk -{" "}
+            <i>Driving BIG Dogs Crazy</i>
+          </span>
         </div>
         <div className="header__time">
           <div className="header__time-current">
