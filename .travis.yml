@@ -10,5 +10,5 @@ deploy:
   token: 
     secure: "ltYn9S+DuaFloI9T37LykmqL2zZ9s0+k1LZgPUTaMZOUcUcDNGsU2VBkMdGujyLmCljE/962S8NcJvouzOHl866pPkBM97IiJ83OqoV9t/Fhd9sxCG4fWGIUuuSWXUTQskHgu8tHydd6FZo4amLfcnr6H/kHJTrW/P1Oq385aF6SjSo4oVqC793maDOKN3Lh4Fwq8LUBmetSJQrlFN2JF6t1kRY2UYijzJsPEFVmQNgDJBB8CXUmGbW+QuWwAuY+J6VrM9do+CWIA+j7+CfArOyjbZcrJsg6DZ3MU5J0gq5Kycj/NCNRVzfyWS1qwwnq7boyqUCebsNm60f1AF0TgFLlhfr0eSUy46224ql5n8nCc2xFpYy2+Jp3S7UOSJ4EXwnHYzGi/x53gXRtzNjKW1qMuPkaisQX746ULWeWJRrd6Gyc8ZX5poqga1EwTaOHiur815rvuiEZzALYdBkMmdFbSu6Hv7Fd7sJv/eKPIqrx8vx3FFaRVkGdVjJUO9T/MTZmfSWl4OGEzojVfDealY8IQJGhWZd0awkV7dxgkAhZ6DSZLYwrBcbAWfeiXDIUcre4Sblo0vRhi+fdP1oTEWZdEuJXmVd25as/6RGW6Mx1YRn/za4y0w7v5Td24rXQokY9BSgEgzJXPp+CB4qTfECr7sZZ8DXQFV0oI9p/yqY="
   project: "that-digital-sign"
-  message: "Deployed to Firebase"
+  message: "Build # $TRAVIS_BUILD_NUMBER https://travis-ci.org/ThatConference/DigitalSignsClient"
     
