@@ -1,12 +1,9 @@
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-
 import React from 'react';
 import { render } from 'react-dom';
 
 import Router from './components/Router';
-// import App from "./components/App";
-
 import registerServiceWorker from './registerServiceWorker';
 
 import './normalize.css';
@@ -18,10 +15,10 @@ const client = new ApolloClient({
 
 registerServiceWorker();
 
-const root = () => (
+const Root = () => (
   <ApolloProvider client={client}>
     <Router />
   </ApolloProvider>
 );
 
-render(root(), document.getElementById('root'));
+render(<Root />, document.getElementById('root'));
