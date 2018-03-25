@@ -22,10 +22,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdnpom",
+    "test": "react-scripts test --env=jsdom",
     "test:coverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
-    "validate": "npm-run-all --parallel build",
+    "validate": "CI=true npm-run-all --parallel build test",
     "precommit": "npm run validate",
     "prepush": "npm run validate"
   },
