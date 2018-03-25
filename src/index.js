@@ -13,15 +13,15 @@ import './normalize.css';
 import './index.css';
 
 const client = new ApolloClient({
-    uri: 'https://w5xlvm3vzz.lp.gql.zone/graphql',
+  uri: 'https://w5xlvm3vzz.lp.gql.zone/graphql',
 });
 
 registerServiceWorker();
 
 const root = () => (
-    <ApolloProvider client={client}>
-        <Router />
-    </ApolloProvider>
+  <ApolloProvider client={client}>
+    <Router />
+  </ApolloProvider>
 );
 
 render(root(), document.getElementById('root'));
