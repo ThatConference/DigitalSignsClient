@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import React, { Fragment } from 'react';
@@ -53,7 +54,7 @@ const Room = props => (
         <Fragment>
           <main className="room">
             <Header />
-            <Session />
+            <Session roomId={props.match.params.roomId} />
             <Footer />
           </main>
           <Data results={JSON.stringify(data)} />
@@ -62,5 +63,13 @@ const Room = props => (
     }}
   </Query>
 );
+
+Room.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      roomId: PropTypes.node,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default Room;

@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import React, { Fragment } from 'react';
 
 import logo from '../logo.svg';
@@ -10,12 +11,18 @@ const Session = props => (
         <img className="session__img" src={logo} alt="" />
       </div>
       <div className="session__details">
-        <h1 className="session__title">How to be Awesome!! </h1>
+        <h1 className="session__title">
+          ROOM FOUND: <span> {props.roomId} </span>
+        </h1>
         <h2 className="session__speaker">CLARK SELL</h2>
         <p className="session__speaker-company">Unspecified</p>
       </div>
     </div>
   </Fragment>
 );
+
+Session.propTypes = {
+  roomId: PropTypes.string.isRequired,
+};
 
 export default Session;
