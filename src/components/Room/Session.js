@@ -12,7 +12,7 @@ const Session = props => (
       </div>
       <div className="session__details">
         <h1 className="session__title">
-          ROUTE ROOM FOUND: <span> {props.roomId} </span>
+          ROOM ROUTE: <span> {props.roomId} </span>
         </h1>
         <h2 className="session__speaker">CLARK SELL</h2>
         <p className="session__speaker-company">Unspecified</p>
