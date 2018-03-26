@@ -1,8 +1,8 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Room from "./Room";
-import App from "./App";
+import Room from './Room/Room';
+import App from './App';
 
 const Router = () => (
   <BrowserRouter>
