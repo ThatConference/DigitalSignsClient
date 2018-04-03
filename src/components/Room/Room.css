@@ -4,10 +4,10 @@
   max-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr minmax(100px, 5fr) minmax(100px, 2fr);
-  grid-template-areas: 
-  "header"
-  "content";
+  grid-template-rows: minmax(100px, 6fr) minmax(100px, 1fr);
+  grid-template-areas:
+  "content"
+  "footer";
   justify-content: space-between;
   overflow: hidden;
   font-size: 1.5em;

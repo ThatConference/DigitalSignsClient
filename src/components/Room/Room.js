@@ -1,12 +1,7 @@
 import { PropTypes } from 'prop-types';
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
 import React, { Fragment } from 'react';
 
-import Loading from './Loading';
-import Data from './Data';
 import Session from './Session';
-import Header from './Header';
 import Footer from './Footer';
 
 import './Room.css';
@@ -33,35 +28,13 @@ room(roomId=$roomId){
 
 */
 
-const queryString = `{
-  rates(currency: "USD") {
-    currency
-    rate
-  }
-}`;
-
 const Room = props => (
-  <Query
-    query={gql`
-      ${queryString}
-    `}
-  >
-    {({ loading, error, data }) => {
-      if (loading) return <Loading />;
-      if (error) return <p>Error...</p>;
-
-      return (
-        <Fragment>
-          <main className="room">
-            <Header />
-            <Session roomId={props.match.params.roomId} />
-            <Footer />
-          </main>
-          <Data results={JSON.stringify(data)} />
-        </Fragment>
-      );
-    }}
-  </Query>
+  <Fragment>
+    <main className="room">
+      <Session roomId={props.match.params.roomId} />
+      <Footer />
+    </main>
+  </Fragment>
 );
 
 Room.propTypes = {

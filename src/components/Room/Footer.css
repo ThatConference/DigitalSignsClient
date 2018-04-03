@@ -1,22 +1,30 @@
 /* =============== Footer Styles =============== */
 .footer {
+  grid-area: footer;
   display: grid;
-  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  grid-template-columns: minmax(100px, 5fr) minmax(100px, 1fr);
+  background: rgba(193, 231, 255, .3);
 }
 
-.footer__qrcode-container {
-  padding: 1rem;
+/* ********** Up Next ********** */
+.footer__upNext {
+  padding: 1.5rem;
+  padding-right: .75rem;
+  display: grid;
+  align-content: center;
 }
 
-.footer__logo-container {
-  padding: 1rem;
+/* ********** Current Time & Warnings ********** */
+.footer__time {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(193, 231, 255, .8);
   text-align: right;
 }
-
-.footer__qrcode,
-.footer__logo {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+.footer__time-current {
+  font-size: 1.75em;
+  font-weight: bold;
 }

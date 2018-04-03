@@ -1,17 +1,18 @@
 import React, { Fragment } from 'react';
+import { DateTime } from 'luxon';
 
-import logo from '../TC-Logo-Red.png';
-import qrcode from '../qrcode.png';
 import './Footer.css';
 
 const Footer = props => (
   <Fragment>
     <div className="footer">
-      <div className="footer__qrcode-container">
-        <img className="footer__qrcode" src={qrcode} alt="" />
+      <div className="footer__upNext">
+        <span>
+          <b>UP NEXT:</b> 11:00am - Mat Bolwerk - <i>Driving BIG Dogs Crazy</i>
+        </span>
       </div>
-      <div className="footer__logo-container">
-        <img className="footer__logo" src={logo} alt="" />
+      <div className="footer__time">
+        <div className="footer__time-current">{DateTime.local().toFormat('hh:mm')}</div>
       </div>
     </div>
   </Fragment>
