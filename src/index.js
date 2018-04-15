@@ -21,7 +21,7 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new WebSocketLink({
-  ws: 'ws://bigredbutton-165918.appspot.com/subscription',
+  ws: 'wss://bigredbutton-165918.appspot.com/subscription',
   // uri: 'ws://localhost:8000/subscriptions',
   options: {
     reconnect: true,
