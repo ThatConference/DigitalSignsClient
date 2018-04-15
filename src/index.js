@@ -1,7 +1,12 @@
-import ApolloClient from 'apollo-boost';
+import { ApolloClient } from 'apollo-boost';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloLink } from 'apollo-link';
+import { HttpLink } from 'apollo-link-http';
+import { getMainDefinition } from 'apollo-utilities';
 import { ApolloProvider } from 'react-apollo';
 import React from 'react';
 import { render } from 'react-dom';
+import { WebSocketLink } from 'apollo-link-ws';
 
 import Router from './components/Router';
 import registerServiceWorker from './registerServiceWorker';
@@ -9,8 +14,33 @@ import registerServiceWorker from './registerServiceWorker';
 import './normalize.css';
 import './index.css';
 
+// Create an http link:
+const httpLink = new HttpLink({
+  uri: 'https://bigredbutton-165918.appspot.com/graphql',
+  // uri: 'http://localhost:8000/graphql',
+});
+
+const wsLink = new WebSocketLink({
+  ws: 'ws://bigredbutton-165918.appspot.com/subscription',
+  // uri: 'ws://localhost:8000/subscriptions',
+  options: {
+    reconnect: true,
+  },
+});
+
+const link = ApolloLink.split(
+  // split based on operation type
+  ({ query }) => {
+    const { kind, operation } = getMainDefinition(query);
+    return kind === 'OperationDefinition' && operation === 'subscription';
+  },
+  wsLink,
+  httpLink,
+);
+
 const client = new ApolloClient({
-  uri: 'https://w5xlvm3vzz.lp.gql.zone/graphql',
+  link,
+  cache: new InMemoryCache(),
 });
 
 registerServiceWorker();

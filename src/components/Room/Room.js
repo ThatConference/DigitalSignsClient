@@ -1,40 +1,33 @@
+import gql from 'graphql-tag';
 import { PropTypes } from 'prop-types';
 import React, { Fragment } from 'react';
+import { Subscription } from 'react-apollo';
 
 import Session from './Session';
 import Footer from './Footer';
 
 import './Room.css';
 
-/*
-
-{
-  "roomId": fromQueryString
-}
-room(roomId=$roomId){
-  upnext {
-    speakerName: "clark",
-    sessionTitle: "foo is bar"
-  },
-  currentSession: {
-    sessionTitle: 'asdf',
-    speakerName: 'clark',
-    speakerCompany: 'unspecified',
-    haedshot: 'http://foo/foo'
+const onRoomChanged = gql`
+  subscription onRoomChanged($roomId: String!) {
+    roomChanged(roomId: $roomId) {
+      id
+      name
+    }
   }
-}
-
-// query here? and pass down through props?
-
-*/
+`;
 
 const Room = props => (
-  <Fragment>
-    <main className="room">
-      <Session roomId={props.match.params.roomId} />
-      <Footer />
-    </main>
-  </Fragment>
+  <Subscription subscription={onRoomChanged} variables={{ roomId: props.match.params.roomId }}>
+    {({ data, loading }) => (
+      <Fragment>
+        <main className="room">
+          <Session roomId={!loading && data.roomChanged.id} />
+          <Footer />
+        </main>
+      </Fragment>
+    )}
+  </Subscription>
 );
 
 Room.propTypes = {
