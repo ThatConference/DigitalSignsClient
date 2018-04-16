@@ -9,12 +9,12 @@ import Footer from './Footer';
 import './Room.css';
 
 const onRoomChanged = gql`
-  subscription onRoomChanged($roomId: String!) {
-    roomChanged(roomId: $roomId) {
-      id
-      name
+    subscription onRoomChanged($roomId: String!) {
+        roomChanged(roomId: $roomId) {
+            id
+            name
+        }
     }
-  }
 `;
 
 const Room = props => (
@@ -26,7 +26,7 @@ const Room = props => (
           <Footer />
         </main>
       </Fragment>
-    )}
+        )}
   </Subscription>
 );
 

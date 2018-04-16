@@ -16,12 +16,13 @@ import './index.css';
 
 // Create an http link:
 const httpLink = new HttpLink({
-  uri: 'https://bigredbutton-165918.appspot.com/graphql',
+  uri: 'https://thatserver-vwhfjkmifm.now.sh/graphql',
   // uri: 'http://localhost:8000/graphql',
 });
 
 const wsLink = new WebSocketLink({
-  ws: 'wss://bigredbutton-165918.appspot.com/subscriptions',
+  uri: 'wss://thatserver-vwhfjkmifm.now.sh/subscriptions',
+  // uri: 'wss://bigredbutton-165918.appspot.com/subscriptions',
   // uri: 'ws://localhost:8000/subscriptions',
   options: {
     reconnect: true,
