@@ -4,6 +4,11 @@ node_js:
 script:
   - npm test
   - npm run build 
+
+env:
+  - REACT_APP_GRAPHQL_HOST=https://that-server-demo.now.sh
+  - REACT_APP_GRAPHQL_WSS_HOST=wss://that-server-demo.now.sh
+
 deploy:
   skip_cleanup: true
   provider: firebase

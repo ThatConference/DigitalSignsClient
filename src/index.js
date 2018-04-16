@@ -16,14 +16,11 @@ import './index.css';
 
 // Create an http link:
 const httpLink = new HttpLink({
-  uri: 'https://that-server-demo.now.sh/graphql',
-  // uri: 'http://localhost:8000/graphql',
+  uri: `${process.env.REACT_APP_GRAPHQL_HOST}/graphql`,
 });
 
 const wsLink = new WebSocketLink({
-  uri: 'wss://that-server-demo.now.sh/subscriptions',
-  // uri: 'wss://bigredbutton-165918.appspot.com/subscriptions',
-  // uri: 'ws://localhost:8000/subscriptions',
+  uri: `${process.env.REACT_APP_GRAPHQL_WSS_HOST}/subscriptions`,
   options: {
     reconnect: true,
   },
