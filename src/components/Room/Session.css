@@ -53,9 +53,6 @@
 .session__title {
   margin: 0;
 }
-.session__desc {
-
-}
 
 /* ********** Animations ********** */
 .brb { /* Add this to .session__background to enable the BRB signal */

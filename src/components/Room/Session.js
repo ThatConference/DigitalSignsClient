@@ -8,7 +8,7 @@ import './Session.css';
 const Session = props => (
   <Fragment>
     <div className="session">
-      <img className="session__background brb" src={sessionBackground} alt="" />
+      <img className="session__background" src={sessionBackground} alt="" />
       <div className="session__img-wrapper">
         <img className="session__img" src={profilePic} alt="" />
       </div>
