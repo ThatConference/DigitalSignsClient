@@ -1,16 +1,28 @@
 /* =============== Session =============== */
 .session {
   grid-area: content;
+  position: relative;
   display: grid;
   grid-template-rows: minmax(100px, 3fr) minmax(100px, 1fr);
   overflow: hidden;
   justify-content: center;
-  background: #F5ECDB url(../TC-DigitalSign-Background.png) center no-repeat;
+  background: #F5ECDB;
+}
+
+.session__background {
+  position: absolute;
+  z-index: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
 /* ********** Session Image ********** */
 .session__img-wrapper {
   padding: 0 2rem 2rem;
+  position: relative;
   display: grid;
   justify-content: center;
   align-content: end;
@@ -36,12 +48,28 @@
   font-weight: bold;
   text-transform: uppercase;
 }
-.session__speaker-company {
-  margin: 0;
-}
+
 /* Session Info */
 .session__title {
+  margin: 0;
 }
 .session__desc {
 
+}
+
+/* ********** Animations ********** */
+.brb { /* Add this to .session__background to enable the BRB signal */
+  animation: brb-pressed 4s ease 1s infinite;
+}
+
+@keyframes brb-pressed {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
