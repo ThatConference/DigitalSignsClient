@@ -6,7 +6,7 @@
         "jest/globals": true
     },
     "parserOptions": {
-        "ecmaVersion": 8,
+        "ecmaVersion": 6,
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
             "classes": true,

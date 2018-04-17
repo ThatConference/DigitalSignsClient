@@ -8,21 +8,31 @@ import Footer from './Footer';
 
 import './Room.css';
 
+// const onRoomChanged = gql`
+//     subscription onRoomScreenChanged($roomId: String!) {
+//         roomScreenChanged(roomId: $roomId) {
+//             id
+//             name
+//         }
+//     }
+// `;
+
 const onRoomChanged = gql`
-    subscription onRoomChanged($roomId: String!) {
-        roomChanged(roomId: $roomId) {
+    subscription onRoomScreenChanged($roomId: String!) {
+        roomScreenChanged(roomId: $roomId) {
             id
             name
         }
     }
 `;
 
+// props.match.params.roomId
 const Room = props => (
-  <Subscription subscription={onRoomChanged} variables={{ roomId: props.match.params.roomId }}>
+  <Subscription subscription={onRoomChanged} variables={{ roomId: '1234' }}>
     {({ data, loading }) => (
       <Fragment>
         <main className="room">
-          <Session roomId={!loading && data.roomChanged.id} />
+          <Session roomId={!loading && data.roomScreenChanged.id} />
           <Footer />
         </main>
       </Fragment>
