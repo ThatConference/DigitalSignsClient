@@ -17,33 +17,33 @@ const roomsQuery = `{
 const App = props => (
   <Query
     query={gql`
-      ${roomsQuery}
-    `}
+            ${roomsQuery}
+        `}
   >
     {({ loading, error, data }) => {
-      if (loading) return <Loading />;
-      if (error) return <p>Error...</p>;
+            if (loading) return <Loading />;
+            if (error) return <p>Error...</p>;
 
-      const rooms = data.rooms.map(room => (
-        <li key={room.id}>
-          <a href={`/rooms/${room.id}`}>goto room: {room.name}</a>
-        </li>
-      ));
+            const rooms = data.rooms.map(room => (
+              <li key={room.id}>
+                <a href={`/rooms/${room.id}`}>{room.name}</a>
+              </li>
+            ));
 
-      return (
-        <Fragment>
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">THAT Sign</h1>
-            </header>
-            <div className="App-intro">
-              <ul>{rooms}</ul>
-            </div>
-          </div>
-        </Fragment>
-      );
-    }}
+            return (
+              <Fragment>
+                <div className="App">
+                  <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <h1 className="App-title">THAT Sign</h1>
+                  </header>
+                  <div className="App-intro">
+                    <ul>{rooms}</ul>
+                  </div>
+                </div>
+              </Fragment>
+            );
+        }}
   </Query>
 );
 
