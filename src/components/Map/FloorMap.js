@@ -6,8 +6,10 @@ const getFloorFill = (data) => {
   const defaultColor = '#FFFFFF';
   const errorColor = '#B42E2E';
 
-  if ( data.speakerStatusChanged.coreid === '2a0026001447353236343033' ) {
-    return data.speakerStatusChanged.data === 'RED' ? errorColor : defaultColor;
+  if (data) {
+    if (data.speakerStatusChanged.coreid === '2a0026001447353236343033') {
+      return data.speakerStatusChanged.data === 'RED' ? errorColor : defaultColor;
+    }
   }
 
   return defaultColor;
@@ -266,7 +268,6 @@ const FloorMap = props => (
           
           <Subscription subscription={onTempChanged}>
             {({ data, loading }) => {
-              if (loading || !data) return null;
               return (
                 <text id="Marula-Temp" font-family="ArialMT, Arial" font-size="17" font-weight="normal" fill="#000000">
                   <tspan x="43.7148438" y="71">{Number.parseFloat(data.roomTempChanged.data.dhtTemperature).toFixed(2)}</tspan>
