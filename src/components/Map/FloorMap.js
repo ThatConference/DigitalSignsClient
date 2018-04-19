@@ -258,18 +258,19 @@ const FloorMap = props => (
         <g id="Marula-Room" transform="translate(1015.000000, 306.000000)">
           
           <Subscription subscription={onSpeakerStatusChange}>
-            {({ data, loading }) => (
+            {({ data }) => (
               <path d="M5,53.2417582 L0,53.2417582 L0,31.3186813 L5,31.3186813 L5,0 L124,0 L124,95 L5,95 L5,53.2417582 Z" id="Marula-Floor" fill={getFloorFill(data)} />
             )}
           </Subscription>
           
           <Subscription subscription={onTempChanged}>
             {({ data, loading }) => {
+              if (loading || !data) return null;
               return (
                 <text id="Marula-Temp" font-family="ArialMT, Arial" font-size="17" font-weight="normal" fill="#000000">
                   <tspan x="43.7148438" y="71">{Number.parseFloat(data.roomTempChanged.data.dhtTemperature).toFixed(2)}</tspan>
                 </text>
-              )
+              );
             }}
           </Subscription>
 
