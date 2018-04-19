@@ -2,8 +2,6 @@ import gql from 'graphql-tag';
 import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 
-import Loading from './common/Loading';
-
 import logo from './logo.svg';
 import './App.css';
 
@@ -21,7 +19,7 @@ const App = props => (
         `}
   >
     {({ loading, error, data }) => {
-            if (loading) return <Loading />;
+            if (loading) return null;
             if (error) return <p>Error...</p>;
 
             const rooms = data.rooms.map(room => (
