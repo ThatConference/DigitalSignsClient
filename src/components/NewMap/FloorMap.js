@@ -1,13 +1,13 @@
-import gql from 'graphql-tag';
-import React, { PureComponent, Fragment, PropTypes } from 'react';
-import { Subscription } from 'react-apollo';
+// import gql from 'graphql-tag';
+import React, { PureComponent } from 'react';
+// import { Subscription } from 'react-apollo';
 
 import './FloorMap.css';
 
 class NewFloorMap extends PureComponent {
 
   componentDidMount() {
-    this.temps = this.props.subscribeToOnTempChanged();
+    // this.temps = this.props.subscribeToOnTempChanged();
   }
 
   render() {

@@ -1,7 +1,6 @@
 import gql from 'graphql-tag';
-import React, { PureComponent, Fragment } from 'react';
-import { Query, Subscription } from 'react-apollo';
-import * as _ from 'lodash';
+import React, { PureComponent } from 'react';
+import { Query } from 'react-apollo';
 
 import NewFloorMap from './FloorMap';
 import './Map.css';
@@ -28,14 +27,14 @@ const onTempChanged = gql`
     }
 `;
 
-const onSpeakerStatusChange = gql`
-    subscription onSpeakerStatusChange {
-        speakerStatusChanged(roomId: 0) {
-            coreId: coreid
-            data
-        }
-    }
-`;
+// const onSpeakerStatusChange = gql`
+//     subscription onSpeakerStatusChange {
+//         speakerStatusChanged(roomId: 0) {
+//             coreId: coreid
+//             data
+//         }
+//     }
+// `;
 
 class NewMap extends PureComponent {
   componentDidMount() { }
