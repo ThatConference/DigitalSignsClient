@@ -7,8 +7,8 @@ script:
 
 env:
   global:
-    - REACT_APP_GRAPHQL_HOST=https://that-server-demo.now.sh
-    - REACT_APP_GRAPHQL_WSS_HOST=wss://that-server-demo.now.sh
+    - REACT_APP_GRAPHQL_HOST=https://api.thatconference.com
+    - REACT_APP_GRAPHQL_WSS_HOST=wss://api.thatconference.com
 
 deploy:
   skip_cleanup: true
