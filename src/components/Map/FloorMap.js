@@ -41,7 +41,8 @@ class FloorMap extends PureComponent {
   componentDidMount() {
     const apolloClient = this.props.client;
 
-    apolloClient.subscribe({ query: onTempChanged })
+    apolloClient
+      .subscribe({ query: onTempChanged })
       .subscribe(this.updateOnTempChanged.bind(this));
 
     apolloClient
