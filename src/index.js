@@ -8,7 +8,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { WebSocketLink } from 'apollo-link-ws';
 
-import Router from './components/Router';
+import Router from './Router';
 import registerServiceWorker from './registerServiceWorker';
 
 import './normalize.css';
