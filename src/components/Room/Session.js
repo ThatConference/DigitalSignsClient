@@ -8,8 +8,8 @@ import sessionBackground from '../TC-DigitalSign-Background.png';
 import './Session.css';
 
 const onSpeakerStatusChange = gql`
-    subscription onSpeakerStatusChange($roomId: Int!) {
-        speakerStatusChanged(roomId: $roomId) {
+    subscription onSpeakerStatusChange($roomName: String!) {
+        speakerStatusChanged(roomName: $roomName) {
             data
             coreid
         }
@@ -17,8 +17,8 @@ const onSpeakerStatusChange = gql`
 `;
 
 const onRoomChanged = gql`
-    subscription onRoomScreenChanged($roomId: Int!) {
-        roomScreenChanged(roomId: $roomId) {
+    subscription onRoomScreenChanged($roomName: String!) {
+        roomScreenChanged(roomName: $roomName) {
             id
             name
             deviceId
@@ -57,33 +57,33 @@ const getClasses = (status) => {
 
 const Session = props => (
   <div className="session">
-    <Subscription subscription={onSpeakerStatusChange} variables={{ roomId: props.roomId }}>
+    <Subscription subscription={onSpeakerStatusChange} variables={{ roomName: props.roomName }}>
       {({ data, loading }) => <img className={getClasses(data)} src={sessionBackground} alt="" />}
     </Subscription>
 
     <Subscription subscription={onRoomChanged} variables={{ roomId: props.roomId }}>
       {({ data, loading }) => {
-                if (loading || !data) return null;
+        if (loading || !data) return null;
 
-                return (
-                  <Fragment>
-                    <div className="session__img-wrapper">
-                      <img className="session__img" src={getRandomImage()} alt="" />
-                    </div>
-                    <div className="session__details">
-                      <h1 className="session__speaker">{data.roomScreenChanged.session.speakerName}</h1>
-                      <h2 className="session__title">{data.roomScreenChanged.session.title}</h2>
-                      {data.roomScreenChanged.name}: {data.roomScreenChanged.deviceId}
-                    </div>
-                  </Fragment>
-                );
-            }}
+        return (
+          <Fragment>
+            <div className="session__img-wrapper">
+              <img className="session__img" src={getRandomImage()} alt="" />
+            </div>
+            <div className="session__details">
+              <h1 className="session__speaker">{data.roomScreenChanged.session.speakerName}</h1>
+              <h2 className="session__title">{data.roomScreenChanged.session.title}</h2>
+              {data.roomScreenChanged.name}: {data.roomScreenChanged.deviceId}
+            </div>
+          </Fragment>
+        );
+      }}
     </Subscription>
   </div>
 );
 
 Session.propTypes = {
-  roomId: PropTypes.string.isRequired,
+  roomName: PropTypes.string.isRequired,
 };
 
 export default Session;

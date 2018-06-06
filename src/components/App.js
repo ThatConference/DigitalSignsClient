@@ -5,43 +5,43 @@ import { Query } from 'react-apollo';
 import logo from './logo.svg';
 import './App.css';
 
-const roomsQuery = `{ 
-  rooms {
-    name
-    id
-  }
-}`;
+const roomsQuery = gql` 
+  query getRooms ($eventId: String){
+    rooms(eventId: $eventId) {
+      name
+    }
+  }`;
 
 const App = props => (
   <Query
-    query={gql`
-            ${roomsQuery}
-        `}
+    query={roomsQuery}
+    variables={{ eventId: process.env.REACT_APP_EVENT_ID }}
   >
+
     {({ loading, error, data }) => {
-            if (loading) return null;
-            if (error) return <p>Error...</p>;
+      if (loading) return null;
+      if (error) return <p>Error...</p>;
 
-            const rooms = data.rooms.map(room => (
-              <li key={room.id}>
-                <a href={`/rooms/${room.id}`}>{room.name}</a>
-              </li>
-            ));
+      const rooms = data.rooms.map(room => (
+        <li key={room.name}>
+          <a href={`/rooms/${room.name}`}>{room.name}</a>
+        </li>
+      ));
 
-            return (
-              <Fragment>
-                <div className="App">
-                  <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">THAT Sign</h1>
-                  </header>
-                  <div className="App-intro">
-                    <ul>{rooms}</ul>
-                  </div>
-                </div>
-              </Fragment>
-            );
-        }}
+      return (
+        <Fragment>
+          <div className="App">
+            <header className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h1 className="App-title">THAT Sign</h1>
+            </header>
+            <div className="App-intro">
+              <ul>{rooms}</ul>
+            </div>
+          </div>
+        </Fragment>
+      );
+    }}
   </Query>
 );
 

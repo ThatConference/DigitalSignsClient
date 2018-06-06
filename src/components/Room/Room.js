@@ -9,7 +9,7 @@ import './Room.css';
 const Room = props => (
   <Fragment>
     <main className="room">
-      <Session roomId={props.match.params.roomId} />
+      <Session roomName={props.match.params.roomName} />
       <Footer />
     </main>
   </Fragment>
@@ -18,7 +18,7 @@ const Room = props => (
 Room.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      roomId: PropTypes.node,
+      roomName: PropTypes.node,
     }).isRequired,
   }).isRequired,
 };

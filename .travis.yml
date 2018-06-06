@@ -9,6 +9,7 @@ env:
   global:
     - REACT_APP_GRAPHQL_HOST=https://api.thatconference.com
     - REACT_APP_GRAPHQL_WSS_HOST=wss://api.thatconference.com
+    - REACT_APP_EVENT_ID=8FAmhWWyIWDZ6a01gk1A
 
 deploy:
   skip_cleanup: true
