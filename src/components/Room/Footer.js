@@ -9,7 +9,7 @@ const Footer = ({ speakerName, sessionTitle }) => (
     <div className="footer">
       <div className="footer__upNext">
         <span>
-          <b>UP NEXT:</b> TIME?? {speakerName} - <i>{sessionTitle}</i>
+          <b>UP NEXT:</b> ??TIME?? {speakerName} - <i>{sessionTitle}</i>
         </span>
       </div>
       <div className="footer__time">
