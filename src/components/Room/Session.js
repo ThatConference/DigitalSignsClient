@@ -1,11 +1,18 @@
 import gql from 'graphql-tag';
 import { PropTypes } from 'prop-types';
-import React, { Fragment } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import { Subscription } from 'react-apollo';
 
 import sessionBackground from '../TC-DigitalSign-Background.png';
 
 import './Session.css';
+
+const getClasses = (status) => {
+  if (!status || status.speakerStatusChanged.data.toUpperCase() === 'GREEN') {
+    return 'session__background';
+  }
+  return 'session__background brb';
+};
 
 const onSpeakerStatusChange = gql`
     subscription onSpeakerStatusChange($roomName: String!) {
@@ -15,23 +22,8 @@ const onSpeakerStatusChange = gql`
         }
     }
 `;
-
-const onRoomChanged = gql`
-    subscription onRoomScreenChanged($roomName: String!) {
-        roomScreenChanged(roomName: $roomName) {
-            id
-            name
-            deviceId
-            session {
-                speakerName
-                title
-            }
-        }
-    }
-`;
-
+/*
 const rando = arr => arr[Math.floor(Math.random() * arr.length)];
-
 let lastImage = 0;
 
 const getRandomImage = () => {
@@ -48,39 +40,40 @@ const getRandomImage = () => {
   return `/headshots/${nextImage}.png`;
 };
 
-const getClasses = (status) => {
-  if (!status || status.speakerStatusChanged.data.toUpperCase() === 'GREEN') {
-    return 'session__background';
+*/
+
+class Session extends PureComponent {
+
+  componentDidMount() {
+    this.props.subscribeToSessionUpdates();
   }
-  return 'session__background brb';
-};
 
-const Session = props => (
-  <div className="session">
-    <Subscription subscription={onSpeakerStatusChange} variables={{ roomName: props.roomName }}>
-      {({ data, loading }) => <img className={getClasses(data)} src={sessionBackground} alt="" />}
-    </Subscription>
+  render() {
+    const { loading, data, error } = this.props;
 
-    <Subscription subscription={onRoomChanged} variables={{ roomId: props.roomId }}>
-      {({ data, loading }) => {
-        if (loading || !data) return null;
+    if (loading) return null;
+    if (error) return <p>Error...</p>;
 
-        return (
-          <Fragment>
-            <div className="session__img-wrapper">
-              <img className="session__img" src={getRandomImage()} alt="" />
-            </div>
-            <div className="session__details">
-              <h1 className="session__speaker">{data.roomScreenChanged.session.speakerName}</h1>
-              <h2 className="session__title">{data.roomScreenChanged.session.title}</h2>
-              {data.roomScreenChanged.name}: {data.roomScreenChanged.deviceId}
-            </div>
-          </Fragment>
-        );
-      }}
-    </Subscription>
-  </div>
-);
+    return (
+      <div className="session">
+        <Subscription subscription={onSpeakerStatusChange} variables={{ roomName: this.props.roomName }}>
+          {({ data: subData }) => <img className={getClasses(subData)} src={sessionBackground} alt="" />}
+        </Subscription>
+
+        <Fragment>
+          <div className="session__img-wrapper">
+            <img className="session__img" src={data.sessions[0].speakers[0].headShot} alt="" />
+          </div>
+          <div className="session__details">
+            <h1 className="session__speaker">{data.sessions[0].speakers[0].firstName} {data.sessions[0].speakers[0].lastName}</h1>
+            <h2 className="session__title">{data.sessions[0].title}</h2>
+            <div dangerouslySetInnerHTML={{ __html: data.sessions[0].descriptionHtmlTruncated }} />
+          </div>
+        </Fragment>
+      </div>
+    );
+  }
+}
 
 Session.propTypes = {
   roomName: PropTypes.string.isRequired,
