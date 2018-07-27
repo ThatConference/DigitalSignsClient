@@ -1,14 +1,15 @@
+import { PropTypes } from 'prop-types';
 import React, { Fragment } from 'react';
 import { DateTime } from 'luxon';
 
 import './Footer.css';
 
-const Footer = props => (
+const Footer = ({ speakerName, sessionTitle }) => (
   <Fragment>
     <div className="footer">
       <div className="footer__upNext">
         <span>
-          <b>UP NEXT:</b> 11:00am - Mat Bolwerk - <i>Driving BIG Dogs Crazy</i>
+          <b>UP NEXT:</b> ??TIME?? {speakerName} - <i>{sessionTitle}</i>
         </span>
       </div>
       <div className="footer__time">
@@ -17,5 +18,11 @@ const Footer = props => (
     </div>
   </Fragment>
 );
+
+Footer.propTypes = {
+  speakerName: PropTypes.string.isRequired,
+  sessionTitle: PropTypes.string.isRequired,
+};
+
 
 export default Footer;

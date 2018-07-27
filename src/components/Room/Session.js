@@ -3,6 +3,8 @@ import { PropTypes } from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
 import { Subscription } from 'react-apollo';
 
+import Footer from './Footer';
+
 import sessionBackground from '../TC-DigitalSign-Background.png';
 
 import './Session.css';
@@ -55,28 +57,35 @@ class Session extends PureComponent {
     if (error) return <p>Error...</p>;
 
     return (
-      <div className="session">
-        <Subscription subscription={onSpeakerStatusChange} variables={{ roomName: this.props.roomName }}>
-          {({ data: subData }) => <img className={getClasses(subData)} src={sessionBackground} alt="" />}
-        </Subscription>
+      <Fragment>
+        <div className="session">
+          <Subscription subscription={onSpeakerStatusChange} variables={{ roomName: this.props.roomName }}>
+            {({ data: subData }) => <img className={getClasses(subData)} src={sessionBackground} alt="" />}
+          </Subscription>
 
-        <Fragment>
-          <div className="session__img-wrapper">
-            <img className="session__img" src={data.sessions[0].speakers[0].headShot} alt="" />
-          </div>
-          <div className="session__details">
-            <h1 className="session__speaker">{data.sessions[0].speakers[0].firstName} {data.sessions[0].speakers[0].lastName}</h1>
-            <h2 className="session__title">{data.sessions[0].title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: data.sessions[0].descriptionHtmlTruncated }} />
-          </div>
-        </Fragment>
-      </div>
+          <Fragment>
+            <div className="session__img-wrapper">
+              <img className="session__img" src={data.sessions[0].speakers[0].headShot} alt="" />
+            </div>
+            <div className="session__details">
+              <h1 className="session__speaker">{data.sessions[0].speakers[0].firstName} {data.sessions[0].speakers[0].lastName}</h1>
+              <h2 className="session__title">{data.sessions[0].title}</h2>
+              <div dangerouslySetInnerHTML={{ __html: data.sessions[0].descriptionHtmlTruncated }} />
+            </div>
+          </Fragment>
+        </div>
+        <Footer
+          speakerName={`${data.sessions[1].speakers[0].firstName} ${data.sessions[1].speakers[0].lastName}`}
+          sessionTitle={data.sessions[1].title} />
+      </Fragment>
     );
   }
 }
 
 Session.propTypes = {
   roomName: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+
 };
 
 export default Session;
