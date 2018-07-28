@@ -25,7 +25,7 @@ const getCurrentSessionQuery = gql`
 
 const onSessionChanged = gql`
   subscription onSessionChanged($eventId: String!, $roomName: String!) { 
-    roomScreenChanged(eventId: $eventId, roomName: $roomName) {
+    sessions: roomScreenChanged(eventId: $eventId, roomName: $roomName) {
       title
       descriptionHtmlTruncated
       scheduledRoom
