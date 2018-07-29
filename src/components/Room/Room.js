@@ -10,6 +10,7 @@ import './Room.css';
 const getCurrentSessionQuery = gql`
   query getCurrentSession($eventId: String!, $roomName: String!) { 
     sessions(eventId: $eventId, roomName: $roomName) {
+      id
       title
       descriptionHtmlTruncated
       scheduledRoom
@@ -26,6 +27,7 @@ const getCurrentSessionQuery = gql`
 const onSessionChanged = gql`
   subscription onSessionChanged($eventId: String!, $roomName: String!) { 
     sessions: roomScreenChanged(eventId: $eventId, roomName: $roomName) {
+      id
       title
       descriptionHtmlTruncated
       scheduledRoom

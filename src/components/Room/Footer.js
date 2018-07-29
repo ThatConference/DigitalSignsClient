@@ -34,7 +34,7 @@ class Footer extends PureComponent {
           <div className="footer__upNext">
             <span>
               <b>UP NEXT:</b>
-              <span class="footer_upNext_speaker">{speakerName} - <i>{sessionTitle}</i> </span>
+              <span className="footer_upNext_speaker">{speakerName} - <i>{sessionTitle}</i> </span>
             </span>
           </div>
           <div className="footer__time">
