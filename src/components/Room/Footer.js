@@ -4,12 +4,16 @@ import { DateTime } from 'luxon';
 
 import './Footer.css';
 
+const getTime = () => {
+  return DateTime.local().toFormat('hh:mm');
+};
+
 class Footer extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentTime: '...',
+      currentTime: getTime(),
     };
   }
 
@@ -17,7 +21,7 @@ class Footer extends PureComponent {
     setInterval(() => {
       this.setState({
         ...this.state,
-        currentTime: DateTime.local().toFormat('hh:mm'),
+        currentTime: getTime(),
       });
     }, 30000);
   }
@@ -29,7 +33,8 @@ class Footer extends PureComponent {
         <div className="footer">
           <div className="footer__upNext">
             <span>
-              <b>UP NEXT:</b> ??TIME?? {speakerName} - <i>{sessionTitle}</i>
+              <b>UP NEXT:</b>
+              <span class="footer_upNext_speaker">{speakerName} - <i>{sessionTitle}</i> </span>
             </span>
           </div>
           <div className="footer__time">

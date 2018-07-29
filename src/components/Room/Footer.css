@@ -14,6 +14,10 @@
   align-content: center;
 }
 
+.footer_upNext_speaker {
+  padding-left: 2rem;
+}
+
 /* ********** Current Time & Warnings ********** */
 .footer__time {
   padding: 1.5rem;

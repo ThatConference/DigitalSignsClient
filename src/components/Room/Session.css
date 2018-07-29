@@ -37,7 +37,7 @@
 
 /* ********** Session Details ********** */
 .session__details {
-  padding: 0 1rem;
+  padding: 0 5rem;
   display: grid;
   align-content: start;
   text-align: center;
