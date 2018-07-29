@@ -24,6 +24,7 @@ const onSpeakerStatusChange = gql`
         }
     }
 `;
+
 /*
 const rando = arr => arr[Math.floor(Math.random() * arr.length)];
 let lastImage = 0;
@@ -45,7 +46,6 @@ const getRandomImage = () => {
 */
 
 class Session extends PureComponent {
-
   componentDidMount() {
     this.props.subscribeToSessionUpdates();
   }
@@ -71,7 +71,6 @@ class Session extends PureComponent {
               <h1 className="session__speaker">{data.sessions[0].speakers[0].firstName} {data.sessions[0].speakers[0].lastName}</h1>
               <h2 className="session__title">{data.sessions[0].title}</h2>
               <div dangerouslySetInnerHTML={{ __html: data.sessions[0].descriptionHtmlTruncated }} />
-              asdf
             </div>
           </Fragment>
         </div>
