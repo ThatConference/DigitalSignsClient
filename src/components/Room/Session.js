@@ -65,7 +65,7 @@ class Session extends PureComponent {
 
           <Fragment>
             <div className="session__img-wrapper">
-              <img className="session__img" src={data.sessions[0].speakers[0].headShot} alt="" />
+              <img className="session__img" src={`https://www.thatconference.com${data.sessions[0].speakers[0].headShot}`} alt="" />
             </div>
             <div className="session__details">
               <h1 className="session__speaker">{data.sessions[0].speakers[0].firstName} {data.sessions[0].speakers[0].lastName}</h1>
