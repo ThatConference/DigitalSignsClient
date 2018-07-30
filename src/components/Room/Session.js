@@ -48,96 +48,109 @@ const getRandomImage = () => {
 
 const findIndex = (sessionId, sessions) => _.findIndex(sessions, s => s.id === sessionId);
 
-const getIndexOfSessionToDisplay = (sessionList) => {
-  // loop through the sessions to see what we need to display
-  let returnIndex = -1;
-  sessionList.forEach((s) => {
-    // is it today
-    if (moment().isSame(s.scheduledDateTime, 'day')) {
-      // is it in session
-      if (
-        moment().isBetween(
-          moment(s.scheduledDateTime),
-          moment(s.scheduledDateTime).add(60, 'minutes')
-        )
-      ) {
-        returnIndex = findIndex(s.id, sessionList);
-        console.log(`In Session: ${s.title}, ${findIndex(s.id, sessionList)}`);
-      }
-
-      // is it up next?
-      if (moment().isBefore(s.scheduledDateTime)) {
-        const minutesUntil = moment(s.scheduledDateTime).diff(
-          moment(),
-          'minutes'
-        );
-        if (minutesUntil < 30) {
-          console.log(`in ${minutesUntil} s.title`);
-          returnIndex = findIndex(s.id, sessionList);
-        }
-      }
-    }
-  });
-
-  return returnIndex;
-
-};
-
-let displayInterval;
+let intervalId;
 
 class Session extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      displayIndex: -1,
+      currentIndex: -1,
+      upNextIndex: 0,
     };
   }
 
   componentDidMount() {
     this.props.subscribeToSessionUpdates();
 
-    displayInterval = setInterval(() => {
-      const currentIndex = getIndexOfSessionToDisplay(this.props.data.sessions);
+    intervalId = setInterval(() => {
+      const displayIndexes = this.getIndexOfSessionToDisplay(this.props.data.sessions);
       this.setState({
         ...this.state,
-        displayIndex: currentIndex,
+        ...displayIndexes,
       });
     }, 10000);
   }
 
-
   componentDidUpdate() {
     // this will end up getting called when the props change on the subscription
-    const currentIndex = getIndexOfSessionToDisplay(this.props.data.sessions);
+    const displayIndexes = this.getIndexOfSessionToDisplay(this.props.data.sessions);
     this.setState({
       ...this.state,
-      displayIndex: currentIndex,
+      ...displayIndexes,
     });
   }
 
   componentWillUnmount() {
-    clearInterval(displayInterval);
+    clearInterval(intervalId);
+  }
+
+  getIndexOfSessionToDisplay(sessionList) {
+    // loop through the sessions to see what we need to display
+    const displayIndexes = {
+      sessionIndex: -1,
+      upNextIndex: this.state.upNextIndex,
+    };
+
+    for (const s of sessionList) {
+      //sessionList.forEach((s) => {
+      // is it today
+      if (moment().isSame(s.scheduledDateTime, 'day')) {
+        // is it in session
+        if (
+          moment().isBetween(
+            moment(s.scheduledDateTime),
+            moment(s.scheduledDateTime).add(60, 'minutes')
+          )
+        ) {
+          console.log(`In Session: ${s.title}, ${findIndex(s.id, sessionList)}`);
+
+          const index = findIndex(s.id, sessionList);
+          displayIndexes.sessionIndex = index;
+          displayIndexes.upNextIndex = index + 1;
+        }
+
+        // is it up next?
+        if (moment().isBefore(s.scheduledDateTime)) {
+          const minutesUntil = moment(s.scheduledDateTime).diff(
+            moment(),
+            'minutes'
+          );
+          if (minutesUntil < 30) {
+            console.log(`in ${minutesUntil} s.title`);
+
+            const index = findIndex(s.id, sessionList);
+            displayIndexes.sessionIndex = index;
+            displayIndexes.upNextIndex = index + 1;
+          }
+        }
+      } else {
+        // next day
+        displayIndexes.upNextIndex = findIndex(s.id, sessionList);
+        break;
+      }
+    }
+
+    return displayIndexes;
   }
 
   render() {
-    console.log('render called');
     const { loading, data, error } = this.props;
 
     if (loading) return null;
     if (error) return <p>Error...</p>;
 
     let sessionElement;
-    if (this.state.displayIndex >= 0) {
+    if (this.state.currentIndex >= 0) {
       sessionElement = (
         <Fragment>
           <div className="session__img-wrapper">
-            <img className="session__img" src={`https://www.thatconference.com${data.sessions[this.state.displayIndex].speakers[0].headShot}`} alt="" />
+            <img className="session__img" src={`https://www.thatconference.com${data.sessions[this.state.currentIndex].speakers[0].headShot}`} alt="" />
           </div>
           <div className="session__details">
-            <h1 className="session__speaker">{data.sessions[this.state.displayIndex].speakers[0].firstName} {data.sessions[0].speakers[0].lastName}</h1>
-            <h2 className="session__title">{data.sessions[this.state.displayIndex].title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: data.sessions[this.state.displayIndex].descriptionHtmlTruncated }} />
+            <h1 className="session__speaker">{data.sessions[this.state.currentIndex].speakers[0].firstName} {data.sessions[this.state.currentIndex].speakers[0].lastName}</h1>
+            <h2 className="session__title">{data.sessions[this.state.currentIndex].title}</h2>
+            <div dangerouslySetInnerHTML={{ __html: data.sessions[this.state.currentIndex].descriptionHtmlTruncated }} />
           </div>
         </Fragment>
       );
@@ -154,8 +167,8 @@ class Session extends PureComponent {
         </div>
 
         <Footer
-          speakerName={`${data.sessions[this.state.displayIndex + 1].speakers[0].firstName} ${data.sessions[this.state.displayIndex + 1].speakers[0].lastName}`}
-          sessionTitle={data.sessions[this.state.displayIndex + 1].title}
+          speakerName={`${data.sessions[this.state.upNextIndex].speakers[0].firstName} ${data.sessions[this.state.upNextIndex].speakers[0].lastName}`}
+          sessionTitle={data.sessions[this.state.upNextIndex].title}
         />
 
       </Fragment>
