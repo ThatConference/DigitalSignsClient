@@ -108,7 +108,7 @@ class Session extends PureComponent {
             'minutes'
           );
           if (minutesUntil < 30) {
-            console.log(`in ${minutesUntil} s.title`);
+            console.log(`in ${minutesUntil} ${s.title}`);
 
             const index = findIndex(s.id, sessionList);
             displayIndexes.sessionIndex = index;
