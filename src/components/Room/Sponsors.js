@@ -2,18 +2,13 @@ import React, { Fragment, PureComponent } from 'react';
 
 import './Session.css';
 
-const rando = arr => arr[Math.floor(Math.random() * arr.length)];
-let lastImage = 0;
+let lastImage = 1;
 
 const getRandomImage = () => {
-  const images = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  let nextImage = lastImage += 1
 
-  let nextImage = rando(images);
-
-  while (nextImage === lastImage) {
-    nextImage = rando(images);
-  }
-
+  // we just happen to know there are 13 images in total.
+  nextImage = nextImage > 13 ? 1 : nextImage;
   lastImage = nextImage;
 
   return `/sponsors/${nextImage}.jpg`;
