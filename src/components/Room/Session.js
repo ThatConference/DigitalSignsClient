@@ -11,13 +11,6 @@ import Sponsors from './Sponsors';
 import sessionBackground from '../TC-DigitalSign-Background.png';
 import './Session.css';
 
-const getClasses = (status) => {
-  if (!status || status.speakerStatusChanged.data.toUpperCase() === 'GREEN') {
-    return 'session__background';
-  }
-  return 'session__background brb';
-};
-
 const onSpeakerStatusChange = gql`
     subscription onSpeakerStatusChange($roomName: String!) {
         speakerStatusChanged(roomName: $roomName) {
@@ -38,6 +31,7 @@ class Session extends PureComponent {
     this.state = {
       sessionIndex: -1,
       upNextIndex: 0,
+      background: 'session__background',
     };
   }
 
@@ -64,6 +58,23 @@ class Session extends PureComponent {
 
   componentWillUnmount() {
     clearInterval(intervalId);
+  }
+
+  setBackground(status) {
+    if (!status || status.speakerStatusChanged.data.toUpperCase() === 'GREEN') {
+
+      this.setState({
+        ...this.state,
+        background: 'session__background',
+      });
+
+      return;
+    }
+
+    this.setState({
+      ...this.state,
+      background: 'session__background brb',
+    });
   }
 
   getIndexOfSessionToDisplay(sessionList) {
@@ -126,13 +137,23 @@ class Session extends PureComponent {
     if (this.state.sessionIndex >= 0) {
       sessionElement = (
         <Fragment>
-          <div className="session__img-wrapper">
-            <img className="session__img" src={`https://www.thatconference.com${data.sessions[this.state.sessionIndex].speakers[0].headShot}`} alt="" />
-          </div>
-          <div className="session__details">
-            <h1 className="session__speaker">{data.sessions[this.state.sessionIndex].speakers[0].firstName} {data.sessions[this.state.sessionIndex].speakers[0].lastName}</h1>
-            <h2 className="session__title">{data.sessions[this.state.sessionIndex].title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: data.sessions[this.state.sessionIndex].descriptionHtmlTruncated }} />
+          <Subscription subscription={onSpeakerStatusChange} variables={{ roomName: this.props.roomName }}>
+            {({ data: subData }) => {
+              this.setBackground(subData);
+              return null;
+            }}
+          </Subscription>
+
+          <div className="session">
+            <img className={this.state.background} src={sessionBackground} alt="" />
+            <div className="session__img-wrapper">
+              <img className="session__img" src={`https://www.thatconference.com${data.sessions[this.state.sessionIndex].speakers[0].headShot}`} alt="" />
+            </div>
+            <div className="session__details">
+              <h1 className="session__speaker">{data.sessions[this.state.sessionIndex].speakers[0].firstName} {data.sessions[this.state.sessionIndex].speakers[0].lastName}</h1>
+              <h2 className="session__title">{data.sessions[this.state.sessionIndex].title}</h2>
+              <div dangerouslySetInnerHTML={{ __html: data.sessions[this.state.sessionIndex].descriptionHtmlTruncated }} />
+            </div>
           </div>
         </Fragment>
       );
@@ -161,14 +182,9 @@ class Session extends PureComponent {
 
     return (
       <Fragment>
-        <div className="session">
-          <Subscription subscription={onSpeakerStatusChange} variables={{ roomName: this.props.roomName }}>
-            {({ data: subData }) => <img className={getClasses(subData)} src={sessionBackground} alt="" />}
-          </Subscription>
-          {sessionElement}
-        </div>
+        {sessionElement}
         {footerElement}
-      </Fragment>
+      </Fragment >
     );
   }
 }
