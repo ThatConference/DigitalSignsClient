@@ -5,7 +5,9 @@ import './Session.css';
 let lastImage = 1;
 
 const getRandomImage = () => {
-  let nextImage = lastImage += 1
+  // bump to next image
+  lastImage += 1;
+  let nextImage = lastImage;
 
   // we just happen to know there are 13 images in total.
   nextImage = nextImage > 13 ? 1 : nextImage;
