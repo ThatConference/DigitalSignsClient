@@ -20,6 +20,13 @@ const onSpeakerStatusChange = gql`
     }
 `;
 
+const onDeploymentChanged = gql`
+  subscription shouldDeploy{
+    deployment {
+      shouldUpdate
+    }
+  }`;
+
 const findIndex = (sessionId, sessions) => _.findIndex(sessions, s => s.id === sessionId);
 
 let intervalId;
@@ -36,6 +43,12 @@ class Session extends PureComponent {
   }
 
   componentDidMount() {
+    const apolloClient = this.props.client;
+
+    apolloClient
+      .subscribe({ query: onDeploymentChanged })
+      .subscribe(this.onDeploymentChanged.bind(this));
+
     this.props.subscribeToSessionUpdates();
 
     intervalId = setInterval(() => {
@@ -58,6 +71,11 @@ class Session extends PureComponent {
 
   componentWillUnmount() {
     clearInterval(intervalId);
+  }
+
+  onDeploymentChanged(data) {
+    console.log('reloading source');
+    window.location.reload(true);
   }
 
   setBackground(status) {
