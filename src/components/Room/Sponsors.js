@@ -1,6 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 
-import './Session.css';
+import './Sponsors.css';
 
 let lastImage = 1;
 
@@ -13,7 +13,7 @@ const getRandomImage = () => {
   nextImage = nextImage > 13 ? 1 : nextImage;
   lastImage = nextImage;
 
-  return `/sponsors/${nextImage}.jpg`;
+  return `/sponsors/${nextImage}.png`;
 };
 
 let intervalId;
@@ -43,8 +43,10 @@ class Sponsors extends PureComponent {
   render() {
     return (
       <Fragment>
-        <div className="session__img-wrapper">
-          <img className="session__img" src={this.state.sponsorImage} alt="" />
+        <div className="sponsors">
+          <div className="sponsors__img-wrapper">
+            <img className="sponsors__img" src={this.state.sponsorImage} alt="" />
+          </div>
         </div>
       </Fragment>
     );
