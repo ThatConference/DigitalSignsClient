@@ -10,6 +10,7 @@
 .footer__upNext {
   padding: 1.5rem;
   padding-right: .75rem;
+  padding-left: 3rem;
   display: grid;
   align-content: center;
 }
