@@ -1,6 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
 
 import './Sponsors.css';
+import './Room.css';
 
 let lastImage = 1;
 
