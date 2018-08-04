@@ -8,6 +8,7 @@
 /* Targeting Large Kalahari Screens */
 @media screen and (min-width: 767px) and (max-width: 769px) {
   .footer {
+    display: none;
     grid-template-columns: minmax(100px, 1.5fr) minmax(100px, 4fr) minmax(100px, 1.5fr);
   }
 }
