@@ -19,5 +19,5 @@ deploy:
   project: "that-digital-sign"
   message: "Build # $TRAVIS_BUILD_NUMBER"
     
-after-success: 
+after_success: 
   - curl -H "Content-Type: application/json" -X POST https://api.thatconference.com/api/admin/deployment
