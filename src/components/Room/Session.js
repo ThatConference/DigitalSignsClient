@@ -31,6 +31,18 @@ const findIndex = (sessionId, sessions) => _.findIndex(sessions, s => s.id === s
 
 let intervalId;
 
+const formatSpeakerList = (speakers) => {
+  let formattedSpeakers;
+
+  if (speakers.length > 1) {
+    formattedSpeakers = speakers.map(s => `${s.firstName} ${s.lastName}`).join(', ');
+  } else {
+    formattedSpeakers = `${speakers[0].firstName} ${speakers[0].lastName}`;
+  }
+
+  return formattedSpeakers;
+};
+
 class Session extends PureComponent {
   constructor(props) {
     super(props);
@@ -112,7 +124,7 @@ class Session extends PureComponent {
             moment(s.scheduledDateTime).add(60, 'minutes')
           )
         ) {
-          console.log(`In Session: ${s.title}, ${findIndex(s.id, sessionList)}`);
+          // console.log(`In Session: ${s.title}, ${findIndex(s.id, sessionList)}`);
 
           const index = findIndex(s.id, sessionList);
           displayIndexes.sessionIndex = index;
@@ -126,7 +138,7 @@ class Session extends PureComponent {
             'minutes'
           );
           if (minutesUntil < 30) {
-            console.log(`in ${minutesUntil} ${s.title}`);
+            // console.log(`in ${minutesUntil} ${s.title}`);
 
             const index = findIndex(s.id, sessionList);
             displayIndexes.sessionIndex = index;
@@ -168,7 +180,7 @@ class Session extends PureComponent {
               <img className="session__img" src={`https://www.thatconference.com${data.sessions[this.state.sessionIndex].speakers[0].headShot}`} alt="" />
             </div>
             <div className="session__details">
-              <h1 className="session__speaker">{data.sessions[this.state.sessionIndex].speakers[0].firstName} {data.sessions[this.state.sessionIndex].speakers[0].lastName}</h1>
+              <h1 className="session__speaker">{formatSpeakerList(data.sessions[this.state.sessionIndex].speakers)}</h1>
               <h2 className="session__title">{data.sessions[this.state.sessionIndex].title}</h2>
               <div dangerouslySetInnerHTML={{ __html: data.sessions[this.state.sessionIndex].descriptionHtmlTruncated }} />
             </div>
@@ -178,7 +190,7 @@ class Session extends PureComponent {
 
       footerElement = (
         <Footer
-          speakerName={`${data.sessions[this.state.upNextIndex].speakers[0].firstName} ${data.sessions[this.state.upNextIndex].speakers[0].lastName}`}
+          speakerName={formatSpeakerList(data.sessions[this.state.upNextIndex].speakers)}
           sessionTitle={data.sessions[this.state.upNextIndex].title}
         />
       );
@@ -194,7 +206,7 @@ class Session extends PureComponent {
         footerElement = (
           <Footer
             scheduledDateTime={data.sessions[footerIndex].scheduledDateTime}
-            speakerName={`${data.sessions[footerIndex].speakers[0].firstName} ${data.sessions[footerIndex].speakers[0].lastName}`}
+            speakerName={formatSpeakerList(data.sessions[footerIndex].speakers)}
             sessionTitle={data.sessions[footerIndex].title}
           />
         );

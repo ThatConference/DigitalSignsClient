@@ -51,7 +51,7 @@ class Footer extends PureComponent {
 Footer.propTypes = {
   speakerName: PropTypes.string.isRequired,
   sessionTitle: PropTypes.string.isRequired,
-  scheduledDateTime: PropTypes.string.isRequired,
+  scheduledDateTime: PropTypes.string,
 };
 
 
