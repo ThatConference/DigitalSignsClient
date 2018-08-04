@@ -155,6 +155,14 @@ class Session extends PureComponent {
     return displayIndexes;
   }
 
+  createImageElement(imageSource) {
+    return (<img src={`https://www.thatconference.com${imageSource}`} className="session__img" alt="" key={imageSource} />)
+  }
+
+  createImages(images) {
+    return images.map(img => this.createImageElement(img.headShot));
+  }
+
   render() {
     const { loading, data, error } = this.props;
 
@@ -163,6 +171,7 @@ class Session extends PureComponent {
 
     let sessionElement;
     let footerElement;
+
 
     if (this.state.sessionIndex >= 0) {
       sessionElement = (
@@ -177,8 +186,7 @@ class Session extends PureComponent {
           <div className="session">
             <img className={this.state.background} src={sessionBackground} alt="" />
             <div className="session__img-wrapper">
-              <img className="session__img" src={`https://www.thatconference.com${data.sessions[this.state.sessionIndex].speakers[0].headShot}`} alt="" />
-              <img className="session__img" src="https://www.thatconference.com/cloud/profilephotos/Kim-Cwiak-01bd9b04-13fc-4952-b4ec-5af56bc6950e-635654945410581745.JPG" alt=""/>
+              {this.createImages(data.sessions[this.state.sessionIndex].speakers)}
             </div>
             <div className="session__details">
               <h1 className="session__title">{data.sessions[this.state.sessionIndex].title}</h1>
