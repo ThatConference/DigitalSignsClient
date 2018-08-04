@@ -34,13 +34,13 @@ class Footer extends PureComponent {
       <Fragment>
         <div className="footer">
           <div className="footer__upNext">
-            <b>UP NEXT: {`${moment(scheduledDateTime).format('ddd, hA')}`} </b>
+            <span className="footer__text"><b>UP NEXT: <br /> {`${moment(scheduledDateTime).format('ddd, hA')}`} </b></span>
           </div>
           <div className="footer__upNext-session">
-              <span className="footer_upNext_speaker">{speakerName} - <i>{sessionTitle}</i></span>
+              <span className="footer__text footer_upNext_speaker">{speakerName} - <i>{sessionTitle}</i></span>
           </div>
           <div className="footer__time">
-            <div className="footer__time-current">{this.state.currentTime}</div>
+            <div className="footer__text footer__time-current">{this.state.currentTime}</div>
           </div>
         </div>
       </Fragment>
