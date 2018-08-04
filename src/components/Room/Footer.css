@@ -8,7 +8,7 @@
 
 /* ********** Up Next ********** */
 .footer__text {
-  margin-top: -1rem;
+  margin-top: -1.25rem;
 }
 
 .footer__upNext {
@@ -34,7 +34,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   background: rgba(193, 231, 255, .8);
   text-align: right;
 }

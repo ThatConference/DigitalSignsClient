@@ -181,8 +181,8 @@ class Session extends PureComponent {
               <img className="session__img" src="https://www.thatconference.com/cloud/profilephotos/Kim-Cwiak-01bd9b04-13fc-4952-b4ec-5af56bc6950e-635654945410581745.JPG" alt=""/>
             </div>
             <div className="session__details">
-              <h1 className="session__speaker">{formatSpeakerList(data.sessions[this.state.sessionIndex].speakers)}</h1>
-              <h2 className="session__title">{data.sessions[this.state.sessionIndex].title}</h2>
+              <h1 className="session__title">{data.sessions[this.state.sessionIndex].title}</h1>
+              <h2 className="session__speaker">{formatSpeakerList(data.sessions[this.state.sessionIndex].speakers)}</h2>
               <div dangerouslySetInnerHTML={{ __html: data.sessions[this.state.sessionIndex].descriptionHtmlTruncated }} />
             </div>
           </div>
