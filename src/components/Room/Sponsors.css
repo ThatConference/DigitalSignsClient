@@ -1,6 +1,6 @@
 /* =============== Sponsors =============== */
 .sponsors {
-  background: #000 url('../DS-Sponsors-Background.png');
+  background-image: url('../DS-Sponsors-Background-Tall.png');
   background-position: 35% 35%;
   background-size: cover;
   overflow: hidden;
@@ -8,6 +8,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+/* 721px+ */
+@media screen and (min-height: 1024px) {
+  .sponsors {
+    background-image: url('../DS-Sponsors-Background.png');
+    background-position: 35% 35%;
+  }
 }
 
 
