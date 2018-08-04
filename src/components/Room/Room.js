@@ -15,6 +15,7 @@ const getCurrentSessionQuery = gql`
       descriptionHtmlTruncated
       scheduledRoom
       scheduledDateTime
+      sessionDuration
       speakers {
         firstName
         lastName
@@ -32,6 +33,7 @@ const onSessionChanged = gql`
       descriptionHtmlTruncated
       scheduledRoom
       scheduledDateTime
+      sessionDuration
       speakers {
         firstName
         lastName

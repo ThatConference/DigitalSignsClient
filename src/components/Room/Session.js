@@ -118,10 +118,11 @@ class Session extends PureComponent {
       // is it today
       if (moment().isSame(s.scheduledDateTime, 'day')) {
         // is it in session
+        console.log('session duration', s.sessionDuration);
         if (
           moment().isBetween(
             moment(s.scheduledDateTime),
-            moment(s.scheduledDateTime).add(60, 'minutes')
+            moment(s.scheduledDateTime).add(s.sessionDuration, 'minutes')
           )
         ) {
           // console.log(`In Session: ${s.title}, ${findIndex(s.id, sessionList)}`);
@@ -166,6 +167,7 @@ class Session extends PureComponent {
   createEmptyFooter() {
     return (
       <Footer
+        isEnd={true}
         speakerName='THAT Conference'
         sessionTitle='Nothing to see here...'
       />);
@@ -206,10 +208,12 @@ class Session extends PureComponent {
       );
 
       if (data.sessions[this.state.upNextIndex]) {
-        footerElement = (<Footer
-          speakerName={formatSpeakerList(data.sessions[this.state.upNextIndex].speakers)}
-          sessionTitle={data.sessions[this.state.upNextIndex].title}
-        />);
+        footerElement = (
+          <Footer
+            scheduledDateTime={data.sessions[this.state.upNextIndex].scheduledDateTime}
+            speakerName={formatSpeakerList(data.sessions[this.state.upNextIndex].speakers)}
+            sessionTitle={data.sessions[this.state.upNextIndex].title}
+          />);
       } else {
         footerElement = this.createEmptyFooter();
       }
