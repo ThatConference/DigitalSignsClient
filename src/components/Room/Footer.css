@@ -2,7 +2,7 @@
 .footer {
   grid-area: footer;
   display: grid;
-  grid-template-columns: minmax(100px, 5fr) minmax(100px, 1fr);
+  grid-template-columns: minmax(100px, 2fr) minmax(100px, 4fr) minmax(100px, 1.5fr);
   background: rgba(193, 231, 255, .3);
 }
 
@@ -10,7 +10,13 @@
 .footer__upNext {
   padding: 1.5rem;
   padding-right: .75rem;
-  padding-left: 3rem;
+  padding-left: 5rem;
+  display: grid;
+  align-content: center;
+}
+.footer__upNext-session {
+  padding: 1.5rem;
+  padding-right: .75rem;
   display: grid;
   align-content: center;
 }
