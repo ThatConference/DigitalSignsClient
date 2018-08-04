@@ -190,9 +190,10 @@ class Session extends PureComponent {
       let footerIndex = 0;
       footerIndex = this.state.upNextIndex === 0 ? 0 : this.state.upNextIndex - 1;
 
-      if (data.sessions.length > 1) {
+      if (data.sessions.length >= 1) {
         footerElement = (
           <Footer
+            scheduledDateTime={data.sessions[footerIndex].scheduledDateTime}
             speakerName={`${data.sessions[footerIndex].speakers[0].firstName} ${data.sessions[footerIndex].speakers[0].lastName}`}
             sessionTitle={data.sessions[footerIndex].title}
           />

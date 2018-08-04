@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { PropTypes } from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
 import { DateTime } from 'luxon';
@@ -27,13 +28,14 @@ class Footer extends PureComponent {
   }
 
   render() {
-    const { speakerName, sessionTitle } = this.props;
+    const { speakerName, sessionTitle, scheduledDateTime } = this.props;
+
     return (
       <Fragment>
         <div className="footer">
           <div className="footer__upNext">
             <span>
-              <b>UP NEXT:</b>
+              <b>UP NEXT: {`${moment(scheduledDateTime).format('ddd, hA')}`} </b>
               <span className="footer_upNext_speaker">{speakerName} - <i>{sessionTitle}</i> </span>
             </span>
           </div>
@@ -49,6 +51,7 @@ class Footer extends PureComponent {
 Footer.propTypes = {
   speakerName: PropTypes.string.isRequired,
   sessionTitle: PropTypes.string.isRequired,
+  scheduledDateTime: PropTypes.string.isRequired,
 };
 
 
