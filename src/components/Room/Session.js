@@ -163,6 +163,14 @@ class Session extends PureComponent {
     return images.map(img => this.createImageElement(img.headShot));
   }
 
+  createEmptyFooter() {
+    return (
+      <Footer
+        speakerName='THAT Conference'
+        sessionTitle='Nothing to see here...'
+      />);
+  }
+
   render() {
     const { loading, data, error } = this.props;
 
@@ -197,12 +205,15 @@ class Session extends PureComponent {
         </Fragment>
       );
 
-      footerElement = (
-        <Footer
+      if (data.sessions[this.state.upNextIndex]) {
+        footerElement = (<Footer
           speakerName={formatSpeakerList(data.sessions[this.state.upNextIndex].speakers)}
           sessionTitle={data.sessions[this.state.upNextIndex].title}
-        />
-      );
+        />);
+      } else {
+        footerElement = this.createEmptyFooter();
+      }
+
     } else {
       sessionElement = (
         <Sponsors />
@@ -221,10 +232,7 @@ class Session extends PureComponent {
         );
       } else {
         footerElement = (
-          <Footer
-            speakerName='THAT Conference'
-            sessionTitle='Nothing to see here...'
-          />
+          this.createEmptyFooter()
         );
       }
     }
