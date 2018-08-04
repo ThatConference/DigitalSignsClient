@@ -5,10 +5,22 @@
   grid-template-columns: minmax(100px, 1.5fr) minmax(100px, 4fr) minmax(100px, 1.5fr);
   background: rgba(193, 231, 255, .3);
 }
+/* Targeting Large Kalahari Screens */
+@media screen and (min-width: 767px) and (max-width: 769px) {
+  .footer {
+    grid-template-columns: minmax(100px, 1.5fr) minmax(100px, 4fr) minmax(100px, 1.5fr);
+  }
+}
 
 /* ********** Up Next ********** */
 .footer__text {
   margin-top: -1.25rem;
+}
+/* Targeting Large Kalahari Screens */
+@media screen and (min-width: 767px) and (max-width: 769px) {
+  .footer__text {
+    margin-top: 0;
+  }
 }
 
 .footer__upNext {
@@ -18,6 +30,12 @@
   display: grid;
   align-content: center;
 }
+/* Targeting Large Kalahari Screens */
+@media screen and (min-width: 767px) and (max-width: 769px) {
+  .footer__upNext {
+    padding-left: 2rem;
+  }
+}
 .footer__upNext-session {
   padding: 1.5rem;
   padding-right: .75rem;
@@ -26,6 +44,12 @@
 }
 .footer_upNext_speaker {
   padding-left: 2rem;
+}
+/* Targeting Large Kalahari Screens */
+@media screen and (min-width: 767px) and (max-width: 769px) {
+  .footer_upNext_speaker {
+    padding-left: 0;
+  }
 }
 
 /* ********** Current Time & Warnings ********** */

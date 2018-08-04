@@ -1,6 +1,6 @@
 /* =============== Sponsors =============== */
 .sponsors {
-  background-image: url('../DS-Sponsors-Background-Tall.png');
+  background-image: url('../DS-Sponsors-Background.png');
   background-position: 35% 35%;
   background-size: cover;
   overflow: hidden;
@@ -9,10 +9,10 @@
   justify-content: center;
   align-items: center;
 }
-/* 721px+ */
-@media screen and (min-height: 1024px) {
+/* Targeting Large Kalahari Screens */
+@media screen and (min-width: 767px) and (max-width: 769px) {
   .sponsors {
-    background-image: url('../DS-Sponsors-Background.png');
+    background-image: url('../DS-Sponsors-Background-Tall.png');
     background-position: 35% 35%;
   }
 }
