@@ -3,7 +3,7 @@
   grid-area: content;
   position: relative;
   display: grid;
-  grid-template-rows: minmax(100px, 3fr) minmax(100px, 1fr);
+  grid-template-rows: minmax(100px, 3fr) minmax(100px, 1.25fr);
   overflow: hidden;
   justify-content: center;
   background: #F5ECDB;
@@ -15,7 +15,7 @@
   margin: auto;
   left: 0;
   right: 0;
-  top: 0;
+  top: -1.25rem;
   bottom: 0;
 }
 
