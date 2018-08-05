@@ -130,26 +130,27 @@ class Session extends PureComponent {
           const index = findIndex(s.id, sessionList);
           displayIndexes.sessionIndex = index;
           displayIndexes.upNextIndex = index + 1;
+          break;
         }
 
         // is it up next?
         if (moment().isBefore(s.scheduledDateTime)) {
-          const minutesUntil = moment(s.scheduledDateTime).diff(
-            moment(),
-            'minutes'
-          );
+          const minutesUntil = moment(s.scheduledDateTime).diff(moment(), 'minutes');
           if (minutesUntil < 30) {
             // console.log(`in ${minutesUntil} ${s.title}`);
 
             const index = findIndex(s.id, sessionList);
             displayIndexes.sessionIndex = index;
             displayIndexes.upNextIndex = index + 1;
+            break;
+          } else {
+            // next day
+            displayIndexes.upNextIndex = findIndex(s.id, sessionList);
+            break;
+
           }
         }
       } else {
-        // next day
-        displayIndexes.upNextIndex = findIndex(s.id, sessionList);
-        break;
       }
     }
 
