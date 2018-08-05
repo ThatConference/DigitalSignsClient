@@ -125,8 +125,6 @@ class Session extends PureComponent {
             moment(s.scheduledDateTime).add(s.sessionDuration, 'minutes')
           )
         ) {
-          // console.log(`In Session: ${s.title}, ${findIndex(s.id, sessionList)}`);
-
           const index = findIndex(s.id, sessionList);
           displayIndexes.sessionIndex = index;
           displayIndexes.upNextIndex = index + 1;
@@ -147,10 +145,8 @@ class Session extends PureComponent {
             // next day
             displayIndexes.upNextIndex = findIndex(s.id, sessionList);
             break;
-
           }
         }
-      } else {
       }
     }
 
@@ -224,8 +220,10 @@ class Session extends PureComponent {
         <Sponsors />
       );
 
+
       let footerIndex = 0;
-      footerIndex = this.state.upNextIndex === 0 ? 0 : this.state.upNextIndex - 1;
+      // footerIndex = this.state.upNextIndex === 0 ? 0 : this.state.upNextIndex - 1;
+      footerIndex = this.state.upNextIndex;
 
       if (data.sessions.length >= 1) {
         footerElement = (

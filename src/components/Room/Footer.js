@@ -45,7 +45,7 @@ class Footer extends PureComponent {
       footerElements = (
         <Fragment>
           <div className="footer__upNext">
-            <span className="footer__text"><b>UP NEXT <br /> {`${moment(this.props.scheduledDateTime).format('ddd, h:mA')}`} </b></span>
+            <span className="footer__text"><b>UP NEXT <br /> {`${moment(this.props.scheduledDateTime).format('ddd, h:mmA')}`} </b></span>
           </div>
           <div className="footer__upNext-session">
             <span className="footer__text footer_upNext_speaker">{this.props.speakerName} - <i>{this.props.sessionTitle}</i></span>
