@@ -147,6 +147,9 @@ class Session extends PureComponent {
             break;
           }
         }
+      } else {
+        displayIndexes.upNextIndex = findIndex(s.id, sessionList);
+        break;
       }
     }
 
