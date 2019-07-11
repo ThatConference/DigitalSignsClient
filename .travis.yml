@@ -4,20 +4,17 @@ node_js:
 script:
   - npm test
   - npm run build
-
 env:
   global:
     - REACT_APP_GRAPHQL_HOST=https://api.thatconference.com
     - REACT_APP_GRAPHQL_WSS_HOST=wss://api.thatconference.com
     - REACT_APP_EVENT_ID=htFi118GD1fGFYdI6Jep
-
 deploy:
   skip_cleanup: true
   provider: firebase
   token:
-    secure: "ltYn9S+DuaFloI9T37LykmqL2zZ9s0+k1LZgPUTaMZOUcUcDNGsU2VBkMdGujyLmCljE/962S8NcJvouzOHl866pPkBM97IiJ83OqoV9t/Fhd9sxCG4fWGIUuuSWXUTQskHgu8tHydd6FZo4amLfcnr6H/kHJTrW/P1Oq385aF6SjSo4oVqC793maDOKN3Lh4Fwq8LUBmetSJQrlFN2JF6t1kRY2UYijzJsPEFVmQNgDJBB8CXUmGbW+QuWwAuY+J6VrM9do+CWIA+j7+CfArOyjbZcrJsg6DZ3MU5J0gq5Kycj/NCNRVzfyWS1qwwnq7boyqUCebsNm60f1AF0TgFLlhfr0eSUy46224ql5n8nCc2xFpYy2+Jp3S7UOSJ4EXwnHYzGi/x53gXRtzNjKW1qMuPkaisQX746ULWeWJRrd6Gyc8ZX5poqga1EwTaOHiur815rvuiEZzALYdBkMmdFbSu6Hv7Fd7sJv/eKPIqrx8vx3FFaRVkGdVjJUO9T/MTZmfSWl4OGEzojVfDealY8IQJGhWZd0awkV7dxgkAhZ6DSZLYwrBcbAWfeiXDIUcre4Sblo0vRhi+fdP1oTEWZdEuJXmVd25as/6RGW6Mx1YRn/za4y0w7v5Td24rXQokY9BSgEgzJXPp+CB4qTfECr7sZZ8DXQFV0oI9p/yqY="
-  project: "that-digital-sign"
+    secure: U+bkpcH18kI8VF6GYr7lC7Wa+LUiJjoXanp9ezmloJ15fEbO0c8YV40acmW+3uQ9gyqy9sMMmC3xJWtAsqJ32B0GtwhZggyg0UD4CtwTMzR5FRF11ICwec1uAyuQg8vBgvY1w4IBGIUzYQoXCFBsEHGWjFrTyNONF+SYLgp/9C22DLxTFtd/4bkh6v4u7GQKzdpKgUMi/z0RmnKKEZ5A8oTEogJ3OyBxU1Nx4ajteTmw9BIe/c8xJucMzvYMCpmi14Gzl9IYMSgEBfNF++quPf/LMWnHDOWgl3Yrqnb4PTLacEXFVRT5HWcP7Qmc6rQJsG7giAfhZCHS/V3v4XK7uHCoX8dESIvA9Sq9ImZdKrmyAD59/SrrDladFk6ttrxrFI41rHHcOWw0j0vojXm0z6shtQH86DpRYDZloznhCJR7tAse3nWcySKMRKTayCaXX7bunYqOgDQs0tudC6DVR65y7KRBF7uAjTBxD678ePa57WLMfzfmK6icSluNsYmYEfusxCx1wD1tG/6ucLTeguwJVIuq7W5/+Hr7VE7LRO3DgzLsnHR6KZV149twUow5Lo9zOA/Ig/WV8uwR+0IOuVUDK+IxIIyVmuZfpDl8CLoKUV7BabH+2VLNY0onV/gb6MOElRRCTP2W4biQo745caIKym8hVCNUhFD0Ch3/fAU=
+  project: that-digital-sign
   message: "Build # $TRAVIS_BUILD_NUMBER"
-
 after_deploy:
   - "curl -H 'Content-Type: application/json' -X POST https://api.thatconference.com/api/admin/deployment"
