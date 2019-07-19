@@ -12,26 +12,27 @@ import sessionBackground from '../TC-DigitalSign-Background.png';
 import './Session.css';
 
 const onSpeakerStatusChange = gql`
-    subscription onSpeakerStatusChange($roomName: String!) {
-        speakerStatusChanged(roomName: $roomName) {
-            data
-            coreid
-        }
+  subscription onSpeakerStatusChange($roomName: String!) {
+    speakerStatusChanged(roomName: $roomName) {
+      data
+      coreid
     }
+  }
 `;
 
 const onDeploymentChanged = gql`
-  subscription shouldDeploy{
+  subscription shouldDeploy {
     deployment {
       shouldUpdate
     }
-  }`;
+  }
+`;
 
 const findIndex = (sessionId, sessions) => _.findIndex(sessions, s => s.id === sessionId);
 
 let intervalId;
 
-const formatSpeakerList = (speakers) => {
+const formatSpeakerList = speakers => {
   let formattedSpeakers;
 
   if (speakers.length > 1) {
@@ -92,7 +93,6 @@ class Session extends PureComponent {
 
   setBackground(status) {
     if (!status || status.speakerStatusChanged.data.toUpperCase() === 'GREEN') {
-
       this.setState({
         ...this.state,
         background: 'session__background',
@@ -119,10 +119,11 @@ class Session extends PureComponent {
       if (moment().isSame(s.scheduledDateTime, 'day')) {
         // is it in session
         console.log('session duration', s.sessionDuration);
+
         if (
           moment().isBetween(
             moment(s.scheduledDateTime),
-            moment(s.scheduledDateTime).add(s.sessionDuration, 'minutes')
+            moment(s.scheduledDateTime).add(s.sessionDuration, 'minutes'),
           )
         ) {
           const index = findIndex(s.id, sessionList);
@@ -154,7 +155,14 @@ class Session extends PureComponent {
   }
 
   createImageElement(imageSource) {
-    return (<img src={`https://www.thatconference.com${imageSource}`} className="session__img" alt="" key={imageSource} />)
+    return (
+      <img
+        src={`https://www.thatconference.com${imageSource}`}
+        className="session__img"
+        alt=""
+        key={imageSource}
+      />
+    );
   }
 
   createImages(images) {
@@ -163,11 +171,8 @@ class Session extends PureComponent {
 
   createEmptyFooter() {
     return (
-      <Footer
-        isEnd={true}
-        speakerName='THAT Conference'
-        sessionTitle='Nothing to see here...'
-      />);
+      <Footer isEnd={true} speakerName="THAT Conference" sessionTitle="Nothing to see here..." />
+    );
   }
 
   render() {
@@ -179,11 +184,13 @@ class Session extends PureComponent {
     let sessionElement;
     let footerElement;
 
-
     if (this.state.sessionIndex >= 0) {
       sessionElement = (
         <Fragment>
-          <Subscription subscription={onSpeakerStatusChange} variables={{ roomName: this.props.roomName }}>
+          <Subscription
+            subscription={onSpeakerStatusChange}
+            variables={{ roomName: this.props.roomName }}
+          >
             {({ data: subData }) => {
               this.setBackground(subData);
               return null;
@@ -197,8 +204,14 @@ class Session extends PureComponent {
             </div>
             <div className="session__details">
               <h1 className="session__title">{data.sessions[this.state.sessionIndex].title}</h1>
-              <h2 className="session__speaker">{formatSpeakerList(data.sessions[this.state.sessionIndex].speakers)}</h2>
-              <div dangerouslySetInnerHTML={{ __html: data.sessions[this.state.sessionIndex].descriptionHtmlTruncated }} />
+              <h2 className="session__speaker">
+                {formatSpeakerList(data.sessions[this.state.sessionIndex].speakers)}
+              </h2>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: data.sessions[this.state.sessionIndex].descriptionHtmlTruncated,
+                }}
+              />
             </div>
           </div>
         </Fragment>
@@ -210,16 +223,13 @@ class Session extends PureComponent {
             scheduledDateTime={data.sessions[this.state.upNextIndex].scheduledDateTime}
             speakerName={formatSpeakerList(data.sessions[this.state.upNextIndex].speakers)}
             sessionTitle={data.sessions[this.state.upNextIndex].title}
-          />);
+          />
+        );
       } else {
         footerElement = this.createEmptyFooter();
       }
-
     } else {
-      sessionElement = (
-        <Sponsors />
-      );
-
+      sessionElement = <Sponsors />;
 
       let footerIndex = 0;
       // footerIndex = this.state.upNextIndex === 0 ? 0 : this.state.upNextIndex - 1;
@@ -234,9 +244,7 @@ class Session extends PureComponent {
           />
         );
       } else {
-        footerElement = (
-          this.createEmptyFooter()
-        );
+        footerElement = this.createEmptyFooter();
       }
     }
 
@@ -244,7 +252,7 @@ class Session extends PureComponent {
       <Fragment>
         {sessionElement}
         {footerElement}
-      </Fragment >
+      </Fragment>
     );
   }
 }
@@ -252,7 +260,6 @@ class Session extends PureComponent {
 Session.propTypes = {
   roomName: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
-
 };
 
 export default Session;
