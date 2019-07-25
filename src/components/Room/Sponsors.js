@@ -11,7 +11,7 @@ const getRandomImage = () => {
   let nextImage = lastImage;
 
   // we just happen to know there are 13 images in total.
-  nextImage = nextImage > 13 ? 1 : nextImage;
+  nextImage = nextImage > 10 ? 1 : nextImage;
   lastImage = nextImage;
 
   return `/sponsors/${nextImage}.png`;
