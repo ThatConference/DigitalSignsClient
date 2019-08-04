@@ -18,3 +18,9 @@
     grid-template-rows: minmax(100px, 8fr);
   }
 }
+/* Targeting New Space Tall Screens */
+@media screen and (min-width: 1078px) and (max-width: 1081px) {
+  .room {
+    grid-template-rows: minmax(100px, 8fr) minmax(100px, 1fr);
+  }
+}

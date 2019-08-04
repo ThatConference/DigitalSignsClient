@@ -16,7 +16,13 @@
     background-position: 35% 35%;
   }
 }
-
+/* Targeting New Space Tall Screens */
+@media screen and (min-width: 1078px) and (max-width: 1081px) {
+  .sponsors {
+    background-image: url('../DS-Sponsors-Background-Tall.png');
+    background-position: 35% 35%;
+  }
+}
 
 /* ********** Sponsors Thanks ********** */
 .sponsors__thanks {
