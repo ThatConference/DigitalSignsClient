@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "DigitalSignsClient",
+  "env": {
+    "REACT_APP_GRAPHQL_HOST": "https://api.thatconference.com",
+    "REACT_APP_GRAPHQL_WSS_HOST": "wss://api.thatconference.com",
+    "REACT_APP_EVENT_ID": "htFi118GD1fGFYdI6Jep"
+  },
+  "build": {
+    "env": {
+      "REACT_APP_GRAPHQL_HOST": "https://api.thatconference.com",
+      "REACT_APP_GRAPHQL_WSS_HOST": "wss://api.thatconference.com",
+      "REACT_APP_EVENT_ID": "htFi118GD1fGFYdI6Jep"
+    }
+  }
+}
